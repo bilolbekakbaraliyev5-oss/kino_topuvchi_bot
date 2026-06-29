@@ -5,7 +5,7 @@ from flask import Flask
 import threading
 
 # --- KONFIGURATSIYA ---
-TOKEN = '8794863028:AAFY4EaIfc3rURshxlWKDf9beaVJq3bfBtQ'
+TOKEN = '8794863028:AAGabcKYPpuO7TlG9s_UhGb1O9hyGvP_Y0I'
 ADMIN_ID = 8336384484
 ADMIN_LINK = "https://t.me/Akbaral1yeevvv"
 KANAL_CHLEN = "@kinolar_topuvchi"
