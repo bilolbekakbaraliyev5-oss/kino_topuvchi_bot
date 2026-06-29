@@ -102,7 +102,14 @@ def handle_all_messages(message):
         bot.send_message(message.chat.id, "❌ Kino topilmadi.")
 
 # Asosiy qism: Server va Bot birga ishlaydi
+# Asosiy qism: Server va Bot birga ishlaydi
 if __name__ == "__main__":
-    threading.Thread(target=run_server).start()
-    print("Bot muvaffaqiyatli ishga tushdi!")
-    bot.infinity_polling()
+    # Serverni yurgizamiz
+    threading.Thread(target=run_server, daemon=True).start()
+
+    # Botni ishga tushirishdan oldin xabar chiqaramiz
+    print("Bot polling boshlanyapti...")
+    try:
+        bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    except Exception as e:
+        print(f"XATOLIK YUZ BERDI: {e}")
