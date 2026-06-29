@@ -19,7 +19,7 @@ t = Thread(target=run)
 t.start()
 
 # Bot sozlamalari
-TOKEN = '8794863028:AAFY4EIfc3rURshx1wKDF9beavJq3bfBtq'
+TOKEN = '8794863028:AAFY4EaIfc3rURshxlWKDf9beaVJq3bfBtQ'
 bot = telebot.TeleBot(TOKEN)
 db = SqliteDict('./kino_baza.db', autocommit=True)
 
