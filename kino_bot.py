@@ -1,32 +1,27 @@
-import os
-from flask import Flask
-from threading import Thread
 import telebot
-from telebot import types
-from sqlitedict import SqliteDict
+import threading
+from flask import Flask
 
-# Server sozlamalari
+# Tokeningizni kodga qo'shdik
+TOKEN = '8794863028:AAFKU6QHjXiBR91W1sv3YhjpAXnoEal1uLc'
+bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
+
 @app.route('/')
 def home():
-    return "Bot is running"
+    return "Bot ishlayapti!"
 
-def run():
-    app.run(host='0.0.0.0', port=10000)
-
-# Serverni fonda ishga tushirish
-t = Thread(target=run)
-t.start()
-
-# Bot sozlamalari
-TOKEN = '8794863028:AAFY4EaIfc3rURshxlWKDf9beaVJq3bfBtQ'
-bot = telebot.TeleBot(TOKEN)
-db = SqliteDict('./kino_baza.db', autocommit=True)
-
-# Qolgan kodlaringizni (bot funksiyalarini) shu yerdan pastga yozing
-# Masalan:
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Salom! Bot ishga tushdi.")
+    bot.reply_to(message, "Salom! Men ishlayapman.")
 
-bot.polling(none_stop=True)
+def run_server():
+    app.run(host='0.0.0.0', port=10000)
+
+if __name__ == "__main__":
+    # Serverni alohida oqimda ishga tushiramiz
+    server_thread = threading.Thread(target=run_server)
+    server_thread.start()
+    
+    # Botni ishga tushiramiz
+    bot.infinity_polling()
